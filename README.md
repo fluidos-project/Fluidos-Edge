@@ -17,7 +17,7 @@ The following figure depicts the envisioned FLUIDOS Edge multi-layered architect
    -  [samples](manifests/samples/): various sample yaml file for deploying mappers, setting up the router, etc.
 -  [**sw/**](sw/)
    - [**FluidosEdge-System**](sw/FluidosEdge-System): Fluidos Edge System source code
-   - [**FluidosEdge-Mappers**](sw/FluidosEdge-Mappers): Fluidos Edge System source code
+   - [**FluidosEdge-Mappers**](sw/FluidosEdge-Mappers): Fluidos Edge Mappers source code
 
  In order to ```clone``` this repository with the submodules includes, use the command:
 ```bash
