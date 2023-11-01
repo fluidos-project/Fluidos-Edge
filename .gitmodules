@@ -1,0 +1,4 @@
+[submodule "sw/FluidosEdge-System"]
+	path = sw/FluidosEdge-System
+	url = https://github.com/otto-tom/FluidosEdge-System.git
+	branch = release-1.14
