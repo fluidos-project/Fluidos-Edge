@@ -19,7 +19,7 @@ The following figure depicts the envisioned FLUIDOS Edge multi-layered architect
    - [**FluidosEdge-System**](sw/FluidosEdge-System): Fluidos Edge System source code
    - [**FluidosEdge-Mappers**](sw/FluidosEdge-Mappers): Fluidos Edge Mappers source code
 
- In order to ```clone``` this repository with the submodules includes, use the command:
+ In order to ```clone``` this repository with the submodules included, use the command:
 ```bash
 git clone --recurse-submodules https://github.com/otto-tom/Fluidos-Edge.git
 ```
