@@ -1,0 +1,12 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: DeviceModel
+metadata:
+ name: bluenrg
+ namespace: default
+spec:
+ properties:
+  - name: environmental
+    description: temperature and atmospheric pressure
+    type:
+     int:
+      accessMode: ReadOnly

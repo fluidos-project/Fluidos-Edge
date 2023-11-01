@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ble-mapper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:  ble-mapper
+  template:
+    metadata:
+      labels:
+        app:  ble-mapper
+    spec:
+      hostNetwork: true
+      containers:
+        - name: ble-mapper-container
+          image:  dbakoyiannis/ble-mapper:v1.0-linux-amd64 # BLE mapper image
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: config-volume
+              mountPath: /opt/kubeedge/
+      nodeSelector:
+        ble: "true"
+      volumes:
+        - name: config-volume
+          configMap:
+            name: device-profile-config-<MetaEdgeNodeName>  # replace <MetaEdgeNodeName> with the actual Meta Edge node name, e.g. edgian
+            items:
+            - key: deviceProfile.json
+              path: deviceProfile.json
+      restartPolicy: Always

@@ -1,0 +1,40 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: Device
+metadata:
+  name: bluenrg-instance-01
+  labels:
+    description: Sensor-Tile-Board
+    manufacturer: STMicroelectronics
+    model: STWINKT1B
+spec:
+  deviceModelRef:
+    name: bluenrg
+  protocol:
+    bluetooth:
+      macAddress: "AA:BB:CC:DD:EE:FF" #MAC address of the IoT device to pair with
+  nodeSelector:
+    nodeSelectorTerms:
+    - matchExpressions:
+      - key: ''
+        operator: In
+        values:
+        - edgian          #Meta Edge node name that pairs the IoT device 
+  propertyVisitors:
+    - propertyName: environmental
+      collectCycle: 500000000
+      reportCycle: 1000000000    
+      bluetooth:
+        characteristicUUID: A7E57001400 #Should match the UUID that the IoT device uses 
+        dataConverter:
+         startIndex: 2
+         endIndex: 7
+         orderOfOperations:             
+  data:
+    dataTopic: "$ke/events/device/+/data/update"
+    dataProperties:
+      - propertyName: environmental
+        metadata:
+          type: integer                
+status:
+  twins:
+    - propertyName: environmental
