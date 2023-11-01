@@ -2,11 +2,22 @@
 
 This repository outlines the steps to create a basic setup for managing Edge nodes and devices, and is designed to meet [Fluidos project](https://fluidos.eu) requirements. It includes the installation and configuration of various components, such as, Kubernetes, CloudCore, EdgeCore, etc. These steps enable easy access and management of Edge nodes using standard Kubernetes methods from a Fluidos node.
 
-## Repository structure
+# FLUIDOS Edge Architecture
 
+The following figure depicts the envisioned FLUIDOS Edge multi-layered architecture.
 
+![](doc/installation-guide/drax/figures/Fluidos-edge.png)
 
-## How to use
+# Repository structure
+
+-  [**doc/**](doc/)
+   - [**installation-guide**](doc/installation-guide): A comprehensive guide to set up a fully functional Fluidos Edge System
+-  [**fw/**](fw/): Ready to use firmware for the [STM32 STEVAL-STWINCSV1](https://www.st.com/en/evaluation-tools/steval-stwinkt1.html) board
+-  [**manifests**](manifests/)
+   -  [samples](manifests/samples/): various sample yaml file for deploying mappers, setting up the router, etc.
+-  [**sw/**](sw/)
+   - [**FluidosEdge-System**](sw/FluidosEdge-System): Fluidos Edge System source code
+   - [**FluidosEdge-Mappers**](sw/FluidosEdge-Mappers): Fluidos Edge System source code
 
  In order to ```clone``` this repository with the submodules includes, use the command:
 ```bash
