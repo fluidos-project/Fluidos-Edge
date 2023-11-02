@@ -674,28 +674,69 @@ Currently, we do utilize the Deep Edge layer. This layer could host devices such
 
 # Micro Edge Layer Side Installation & Configuration
 
-Following the 
-
 ## Useful links
 
 -    [STM32 STWIN SensorTile Wireless Industrial Node](https://www.st.com/en/evaluation-tools/steval-stwinkt1b.html)
+-    [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
+-    [STM32CubeIDE User Manual](https://www.st.com/resource/en/user_manual/um2609-stm32cubeide-user-guide-stmicroelectronics.pdf)
+-    [STM32 Cube Programmer](https://www.st.com/en/development-tools/stm32cubeprog.html)
 -    [STM32 BLE library]()
 -    [STM32 MEMS library]()
 -    [STM32 Application notes about using CubeIDE, programmer, etc...]()
 
 ## Leaf Edge Device
+At the following subsections we are going to describe a procedure for compiling and flashing the firmware for a BLE LED. We will use [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) to complete the aforementioned procedures. If you want to use the pre-compiled firmware it is available under *[fw/](../../fw/)* folder, and you can move directly at the [Flush the Firmware](#flush-the-firmware) subsection.
 
-### Bluetooth
+### Bluetooth LED
+First thing to do is to create a basic project for your STM32 board ([STM32CubeIDE User Manual](https://www.st.com/resource/en/user_manual/)). At the subsections that follow we suppose that the selected board is [STM32 STWIN SensorTile Wireless Industrial Node](https://www.st.com/en/evaluation-tools/steval-stwinkt1b.html) and the sensor to sample is [LPS22HH](https://www.st.com/en/mems-and-sensors/lps22hh.html), which can provide the environmental temperature and pressure.
 
-#### Use the precompiled Firmware
+#### Enable Sensor Sampling
+After creating a basic project for your STM32 board ([STM32CubeIDE User Manual](https://www.st.com/resource/en/user_manual/)), launch CubeMX (by double-clicking the .ioc file). Make sure that at least one I2C controller is enabled in I2C mode, as seen at the following figure, where I2C3 controller is enabled in I2C mode (leave the default configuration).
+![](drax/figures/i2c-ena.png)
 
+Navigate to *"Software Packs -> Select Components"* or hit *"Alt-o"* and select:
+- STMicroelecroniccs.X-CUBE-MEMS1
+    - Board Part Press Temp
+        - LPS22HH: I2C
+    - Board Support custom
+        - ENV_SENSOR
+Back to the main screen, navigate to *"Middleware and Software Packs"* (left vertical menu) and select *"X-CUBE-MEMS1"*. At the *"Mode"* tab select *"Board Part PresTemp"* and *"Board Support Custom"*. At the *"Configuration -> Parameter Settings"* select *"LPS22HH SA0 pin -> VDD"*. At the *"Configuration -> Platform Settings"* select *"I2C3"* as *"LPS22HH BUS IO driver"*.
+
+Parameter Settings             |  Platform Settings
+:-----------------------------:|:-----------------------------:
+![](drax/figures/LPS22HH-parameters.png)  |  ![](drax/figures/LPS22HH-platform.png)
+
+Save the file and select to generate the code when prompted. Alternatively you can explicitly select to generate code via the gear icon.
+
+Now, it is possible to configure and read values from the enabled sensor. This is some sample C code for reading sensor values in polling mode.
+```C
+#include "custom_env_sensors.h"
+
+float rd_val;
+
+/* Initialize LPS22HH sensor */  
+CUSTOM_ENV_SENSOR_Init(CUSTOM_LPS22HH_0, ENV_TEMPERATURE|ENV_PRESSURE);
+
+/* Read Temperature */
+CUSTOM_ENV_SENSOR_GetValue(CUSTOM_LPS22HH_0, ENV_TEMPERATURE, &rd_val);
+  
+/* Read Pressure */
+CUSTOM_ENV_SENSOR_GetValue(CUSTOM_LPS22HH_0, ENV_TEMPERATURE, &rd_val);
+``` 
+
+#### Enable Bluetooth Library
+#### The Main Function
 #### Compile the Firmware
-##### Enable Sensor Sampling
-##### Integrate Bluetooth Library
-##### The Main Function
+To compile the firmware, follow these steps:
+- Select the project root directory at the *"Project Explorer"*
+- From the window menu select *"Project -> Build"*
 
 #### Flush the Firmware
-#### Validation
+There are two options to flush the firmware to the selected board. If you have built the firmware from source using [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) you can:
+- Select the project root directory at the *"Project Explorer"*
+- From the window menu select *"Project -> Run -> Run As-> STM32 C/C++ Application"*
+
+Alternatively or in the case that you use the pre-compiled firmware, [STM32 Cube Programmer](https://www.st.com/en/development-tools/stm32cubeprog.html) can be used to complete the action. Information about using the [STM32 Cube Programmer](https://www.st.com/en/development-tools/stm32cubeprog.html) can be found at [AN5054 Secure programming using STM32CubeProgrammer](https://www.st.com/resource/en/application_note/an5054-secure-programming-using-stm32cubeprogrammer-stmicroelectronics.pdf) application note.
 
 ### Progress So Far
 
