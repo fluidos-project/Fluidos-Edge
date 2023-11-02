@@ -277,7 +277,7 @@ PATCH_LINE=$(awk -v reline="$ROUTER_ENA_LINE" 'NR >= reline && /enable/{ print N
 awk  -v paline="$PATCH_LINE" '{if (FNR==paline) $0="    enable: true";print}' /etc/kubeedge/config/cloudcore.yaml | sudo tee /etc/kubeedge/config/cloudcore.yaml > /dev/null
 ```
 
-> **_NOTE:_** Upload the image at FLUIDOS namespace.
+If you wish to modify and/or create your own image and upload it to your repository, you may refer to the [FluidosEdge-System](https://github.com/otto-tom/FluidosEdge-System) and follow the instructions.
 
 Initialize KubeEdge cloud core (as normal user).
 ```bash
@@ -612,7 +612,6 @@ spec:
       restartPolicy: Always
 EOF
 ```
-> **_NOTE:_** Upload the image at FLUIDOS namespace.
 
 Deploy the with the following command.
 
