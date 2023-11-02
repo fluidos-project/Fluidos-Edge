@@ -178,7 +178,7 @@ Install the latest Container Networking Interface (CNI) plugins.
 ```bash
 VER=$(curl -s https://api.github.com/repos/containernetworking/plugins/releases | grep tag_name | cut -d '"' -f 4 | sed 1q | sed 's/v//g')
 wget https://github.com/containernetworking/plugins/releases/download/v$VER/cni-plugins-linux-amd64-v$VER.tgz
-mkdir -p /opt/cni/bin\
+mkdir -p /opt/cni/bin
 tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v$VER.tgz
 ```
 
