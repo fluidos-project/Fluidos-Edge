@@ -13,8 +13,8 @@ The following figure depicts the envisioned FLUIDOS Edge multi-layered architect
 -  [**doc/**](doc/)
    - [**installation-guide**](doc/installation-guide): A comprehensive guide to set up a fully functional Fluidos Edge System
 -  [**fw/**](fw/): Ready to use firmware for the [STM32 STEVAL-STWINCSV1](https://www.st.com/en/evaluation-tools/steval-stwinkt1.html) board
--  [**manifests**](manifests/)
-   -  [samples](manifests/samples/): various sample yaml file for deploying mappers, setting up the router, etc.
+-  [**manifests/**](manifests/)
+   -  [**samples**](manifests/samples/): various sample yaml file for deploying mappers, setting up the router, etc.
 -  [**sw/**](sw/)
    - [**FluidosEdge-System**](sw/FluidosEdge-System): Fluidos Edge System source code
    - [**FluidosEdge-Mappers**](sw/FluidosEdge-Mappers): Fluidos Edge Mappers source code
