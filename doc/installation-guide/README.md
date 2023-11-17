@@ -675,7 +675,7 @@ Currently, we do utilize the Deep Edge layer. This layer could host devices such
 
 ## Useful links
 
--    [STM32 STWIN SensorTile Wireless Industrial Node](https://www.st.com/en/evaluation-tools/steval-stwinkt1b.html)
+-    [STM32 STWIN.box - SensorTile Wireless Industrial Node Development Kit](https://www.st.com/en/evaluation-tools/steval-stwinbx1.html)
 -    [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
 -    [STM32CubeIDE User Manual](https://www.st.com/resource/en/user_manual/um2609-stm32cubeide-user-guide-stmicroelectronics.pdf)
 -    [STM32 Cube Programmer](https://www.st.com/en/development-tools/stm32cubeprog.html)
