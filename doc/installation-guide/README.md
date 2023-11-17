@@ -681,10 +681,10 @@ Currently, we do utilize the Deep Edge layer. This layer could host devices such
 -    [STM32 Cube Programmer](https://www.st.com/en/development-tools/stm32cubeprog.html)
 -    [STM32 BLE library]()
 -    [STM32 MEMS library]()
--    [STM32 Application notes about using CubeIDE, programmer, etc...]()
+-    [Add: STM32 Application notes about using CubeIDE, programmer, etc...]()
 
 ## Leaf Edge Device
-At the following subsections we are going to describe a procedure for compiling and flashing the firmware for a BLE LED. We will use [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) to complete the aforementioned procedures. If you want to use the pre-compiled firmware it is available under *[fw/](../../fw/)* folder, and you can move directly at the [Flush the Firmware](#flush-the-firmware) subsection.
+At the following subsections we are going to describe a procedure for compiling and flashing the firmware for a BLE LED. We will use [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html) to complete the aforementioned procedures. If you want to use the pre-compiled firmware it is available under *[fw/FluidosEdge_STWINBX1_MEMS_BLE2_Binaries](../../fw/FluidosEdge_STWINBX1_MEMS_BLE2_Binaries/)* folder, and you can move directly at the [Flush the Firmware](#flush-the-firmware) subsection. The source files that were used to produce this binary is available under folder *[fw/FluidosEdge_STWINBX1_MEMS_BLE2_Sources](../../fw/FluidosEdge_STWINBX1_MEMS_BLE2_Sources/)* that you can use to compile the code on your own, or to apply your modifications, or as a reference for porting to a device of your flavor.
 
 ### Bluetooth LED
 First thing to do is to create a basic project for your STM32 board ([STM32CubeIDE User Manual](https://www.st.com/resource/en/user_manual/)). At the subsections that follow we suppose that the selected board is [STM32 STWIN SensorTile Wireless Industrial Node](https://www.st.com/en/evaluation-tools/steval-stwinkt1b.html) and the sensor to sample is [LPS22HH](https://www.st.com/en/mems-and-sensors/lps22hh.html), which can provide the environmental temperature and pressure.
