@@ -23,11 +23,11 @@ The following figure depicts the envisioned FLUIDOS Edge multi-layered architect
 
  In order to ```clone``` this repository with the submodules included, use the command:
 ```bash
-git clone --recurse-submodules https://github.com/otto-tom/Fluidos-Edge.git
+git clone --recurse-submodules https://github.com/fluidos-project/fluidos-edge.git
 ```
 If you do not intend to build the Fluidos Edge System or the Mappers from source you can omit these submodules by using the following command:
 ```bash
-git clone https://github.com/otto-tom/Fluidos-Edge.git
+git clone https://github.com/fluidos-project/fluidos-edge.git
 ``` 
 If you have already cloned only the basic repository, and you wish to build the submodules, use this command:
 ```bash
@@ -37,7 +37,7 @@ Alternatively, if you wish to work only with the Fluidos Edge System submodule:
 ```bash
 git submodule update --init --progress sw/FluidosEdge-System
 ```
-Or if you wish to work only with the Fluidos Edge Mappers  submodule:
+Or if you wish to work only with the Fluidos Edge Mappers submodule:
 ```bash
 git submodule update --init --progress sw/FluidosEdge-Mappers
 ```
