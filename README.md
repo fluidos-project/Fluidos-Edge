@@ -12,7 +12,9 @@ The following figure depicts the envisioned FLUIDOS Edge multi-layered architect
 
 -  [**doc/**](doc/)
    - [**installation-guide**](doc/installation-guide): A comprehensive guide to set up a fully functional Fluidos Edge System
--  [**fw/**](fw/): Ready to use firmware for the [STM32 STEVAL-STWINCSV1](https://www.st.com/en/evaluation-tools/steval-stwinkt1.html) board
+-  [**fw/**](fw/)
+   - [**FluidosEdge_STWINBX1_MEMS_BLE2_Binaries/**](fw/FluidosEdge_STWINBX1_MEMS_BLE2_Binaries): Ready to use FLUIDOS firmware for the [STWIN.box - STEVAL-STWINBX1](https://www.st.com/en/evaluation-tools/steval-stwinbx1.html) board. For more information about product specifications, application notes and user manuals please refer to the [ST evaluation tools portal](https://www.st.com/en/evaluation-tools/steval-stwinbx1.html#documentation)
+   - [**FluidosEdge_STWINBX1_MEMS_BLE2_Sources/**](fw/FluidosEdge_STWINBX1_MEMS_BLE2_Sources): STWIN.box project source files
 -  [**manifests/**](manifests/)
    -  [**samples**](manifests/samples/): various sample yaml file for deploying mappers, setting up the router, etc.
 -  [**sw/**](sw/)
