@@ -245,6 +245,7 @@ chown root:root /usr/local/bin/keadm
 If a firewall is present, make sure that traffic on ports 10000,
 10002, 10003 and 10004 is enabled.
 
+<!---
 The default configuration file path is
 ```text
 /etc/kubeedge/config/cloudcore.yaml
@@ -276,6 +277,7 @@ ROUTER_ENA_LINE=$(awk '/router/{print NR}' /etc/kubeedge/config/cloudcore.yaml)
 PATCH_LINE=$(awk -v reline="$ROUTER_ENA_LINE" 'NR >= reline && /enable/{ print NR; exit }' /etc/kubeedge/config/cloudcore.yaml)
 awk  -v paline="$PATCH_LINE" '{if (FNR==paline) $0="    enable: true";print}' /etc/kubeedge/config/cloudcore.yaml | sudo tee /etc/kubeedge/config/cloudcore.yaml > /dev/null
 ```
+-->
 
 If you wish to modify and/or create your own image and upload it to your repository, you may refer to the [FluidosEdge-System](https://github.com/otto-tom/FluidosEdge-System) and follow the instructions.
 
