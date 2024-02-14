@@ -107,8 +107,8 @@ Install the Containerd runtime.
 ```bash
 apt-get -y install curl apt-transport-https
 mkdir /etc/apt/keyrings/
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
 apt-get update
 apt-get install containerd.io
 ```
@@ -239,7 +239,7 @@ KE_VER=1.14.3
 wget https://github.com/kubeedge/kubeedge/releases/download/v$KE_VER/keadm-v$KE_VER-linux-amd64.tar.gz
 tar -xvf keadm-v$KE_VER-linux-amd64.tar.gz
 mv keadm-v$KE_VER-linux-amd64/keadm/keadm /usr/local/bin/
-chown root.root /usr/local/bin/keadm
+chown root:root /usr/local/bin/keadm
 ```
 
 If a firewall is present, make sure that traffic on ports 10000,
@@ -471,7 +471,7 @@ KE_VER=1.14.3
 wget https://github.com/kubeedge/kubeedge/releases/download/v$KE_VER/keadm-v$KE_VER-linux-amd64.tar.gz
 tar -xvf keadm-v$KE_VER-linux-amd64.tar.gz
 mv keadm-v$KE_VER-linux-amd64/keadm/keadm /usr/local/bin/
-chown root.root /usr/local/bin/keadm
+chown root:root /usr/local/bin/keadm
 ```
 
 Based on the configuration parameters, the Meta Edge node (via EdgeCore) will join the Cloud node (replace _<SERVER_IP>_ with the cloud side node's IP or name that have set at the hosts file) (replace _<TOKEN>_ with the token that was generated during the last step of the Cloud layer section[asdad](#cloud-layer-installation--configuration)).
