@@ -139,19 +139,19 @@ Install Kubernetes.
 curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg 
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list
 apt-get update
-apt-get install -y kubelet=1.24.14-00 kubeadm=1.24.14-00 kubectl=1.24.14-00
+apt-get install -y kubelet=1.24.17-00 kubeadm=1.24.17-00 kubectl=1.24.17-00
 apt-mark hold kubelet kubeadm kubectl
 systemctl enable kubelet
 ```
 
 Fetch the required images before cluster initialization
 ```bash
-kubeadm config images pull --cri-socket unix:///run/containerd/containerd.sock --kubernetes-version 1.24.14
+kubeadm config images pull --cri-socket unix:///run/containerd/containerd.sock --kubernetes-version 1.24.17
 ```
 
 Initialize Kubernetes cluster using Flannel as CNI (Container Network Interface)
 ```bash
-kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket unix:///run/containerd/containerd.sock --kubernetes-version 1.24.14
+kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket unix:///run/containerd/containerd.sock --kubernetes-version 1.24.17
 ```
 
 Enable normal user ability to contact Kubernetes API server, by executing the following commands.
@@ -196,6 +196,7 @@ ufw reload
 Remove the taints on the master so that pods can be scheduled on it (as normal user).
 ```bash
 kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
 It should return the following: node \<hostname\> untainted
 
