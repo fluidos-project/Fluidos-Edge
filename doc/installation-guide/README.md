@@ -121,8 +121,7 @@ containerd config default | tee /etc/containerd/config.toml
 
 Change SystemdCgroup property in Containerd confoguration file to true.
 ```bash
-sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' 
-/etc/containerd/config.toml
+sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
 ```
 Restart and enable the Containerd service.
 ```bash
