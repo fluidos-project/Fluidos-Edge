@@ -586,6 +586,10 @@ Create the device model and instance using the yaml files.
 kubectl apply -f BLE-Device-Model.yaml
 kubectl apply -f BLE-Instance.yaml
 ```
+![](drax/figures/get-nginx.png)
+
+Both device model and instance manifest files are available [here](https://github.com/fluidos-project/fluidos-edge/tree/main/manifests/samples/devices).
+
 This is the right sequence to create a device, any device instance must precede the model creation. Deletion should be done in reverse order, delete any instance first and then the model.
 
 Next step is to deploy the Bluetooth Mapper. This is a sample yaml file of the deployment.
