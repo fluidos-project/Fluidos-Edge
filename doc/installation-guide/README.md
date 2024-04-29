@@ -533,29 +533,34 @@ metadata:
     description: Sensor-Tile-Board
     manufacturer: STMicroelectronics
     model: STWINKT1B
+  annotations:
+    sensors: WwogIHsKICAgICJodHMyMjEiOiB7CiAgICAgICJtYW51ZmFjdHVyZXIiOiAiU1RNaWNyb2VsZWN0cm9uaWNzIiwKICAgICAgIm1hcmtldCI6ICJDdW5zdW1lciIsCiAgICAgICJtb2RlbCI6ICJodHMyMjEiLAogICAgICAidHlwZSI6IHsKICAgICAgICAiZW52aXJvbm1lbnRhbCI6IFsKICAgICAgICAgICJUZW1wZXJhdHVyZSIsCiAgICAgICAgICAiSHVtaWRpdHkiCiAgICAgICAgXQogICAgICB9LAogICAgICAidW5pdCI6IFsKICAgICAgICAiQ2Vsc2l1cyIsCiAgICAgICAgIlBlcmNlbnRhZ2UiCiAgICAgIF0sCiAgICAgICJpbnRlcmZhY2UiOiBbCiAgICAgICAgIkkyQyIsCiAgICAgICAgIkkyQyIKICAgICAgXSwKICAgICAgImNoYXJhY3RlcmlzdGljcyI6IHsKICAgICAgICAiYWNjdXJhY3kiOiBbCiAgICAgICAgICAwLjIsCiAgICAgICAgICAzCiAgICAgICAgXSwKICAgICAgICAic2FtcGxpbmdSYXRlIjogewogICAgICAgICAgInVuaXQiOiBbCiAgICAgICAgICAgICJIeiIsCiAgICAgICAgICAgICJIeiIKICAgICAgICAgIF0sCiAgICAgICAgICAidmFsdWUiOiBbCiAgICAgICAgICAgIDUwMCwKICAgICAgICAgICAgMjAKICAgICAgICAgIF0KICAgICAgICB9LAogICAgICAgICJjb25zdW1wdGlvbiI6IHsKICAgICAgICAgICJ1bml0IjogIs68QSIsCiAgICAgICAgICAidmFsdWUiOiA4MAogICAgICAgIH0KICAgICAgfQogICAgfQogIH0KXQ==
 spec:
   deviceModelRef:
     name: bluenrg
   protocol:
     bluetooth:
-      macAddress: "AA:BB:CC:DD:EE:FF" #MAC address of the IoT device to pair with
+      macAddress: "CB:B8:C2:15:19:EF" #Please note it is optional to provide MAC address
   nodeSelector:
     nodeSelectorTerms:
     - matchExpressions:
       - key: ''
         operator: In
         values:
-        - edgian          #Meta Edge node name that pairs the IoT device 
+        - edgian3          #pls give your edge node name
   propertyVisitors:
     - propertyName: environmental
       collectCycle: 500000000
       reportCycle: 1000000000    
       bluetooth:
-        characteristicUUID: A7E57001400 #Should match the UUID that the IoT device uses 
+        characteristicUUID: 00140000000111e1ac360002a5d5c51b
         dataConverter:
          startIndex: 2
          endIndex: 7
-         orderOfOperations:             
+         orderOfOperations:  
+    - propertyName: config
+      bluetooth:
+        characteristicUUID: 00f00000000111e1ac360002a5d5c51b           
   data:
     dataTopic: "$ke/events/device/+/data/update"
     dataProperties:
@@ -565,7 +570,15 @@ spec:
 status:
   twins:
     - propertyName: environmental
-
+    - propertyName: config
+      desired:
+        metadata:
+          type: string
+        value: "config"
+      reported:
+        metadata:
+          type: string
+        value: "0"
 ```
 For more information about the available properties you can refer to the Mapper's repository (**REFERENCE HERE**).
 Create the device model and instance using the yaml files.
