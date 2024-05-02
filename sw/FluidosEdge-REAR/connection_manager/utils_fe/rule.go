@@ -40,7 +40,7 @@ func NewEventbus2RestRule(target string) *rulesv1.Rule {
 		Spec: rulesv1.RuleSpec{
 			Source: "eventbus-fluidos",
 			SourceResource: map[string]string{
-				"topic":     "STWINKT1B-e9906ef209a8",
+				"topic":     "stwinkt1b-e9906ef209a8",
 				"node_name": "edgian3",
 			},
 			Target: "rest-fluidos",
