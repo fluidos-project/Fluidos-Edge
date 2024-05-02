@@ -13,12 +13,12 @@ import (
 	edgeclientset "github.com/kubeedge/kubeedge/pkg/client/clientset/versioned"
 )
 
-func NewRule(sourceType, targetType rulesv1.RuleEndpointTypeDef) *rulesv1.Rule {
+func NewRule(sourceType, targetType rulesv1.RuleEndpointTypeDef, target string) *rulesv1.Rule {
 	switch {
 	case sourceType == rulesv1.RuleEndpointTypeRest && targetType == rulesv1.RuleEndpointTypeEventBus:
 		return NewRest2EventbusRule()
 	case sourceType == rulesv1.RuleEndpointTypeEventBus && targetType == rulesv1.RuleEndpointTypeRest:
-		return NewEventbus2RestRule()
+		return NewEventbus2RestRule(target)
 	case sourceType == rulesv1.RuleEndpointTypeRest && targetType == rulesv1.RuleEndpointTypeServiceBus:
 		return NewRest2ServicebusRule()
 	case sourceType == rulesv1.RuleEndpointTypeServiceBus && targetType == rulesv1.RuleEndpointTypeRest:
@@ -27,7 +27,7 @@ func NewRule(sourceType, targetType rulesv1.RuleEndpointTypeDef) *rulesv1.Rule {
 	return nil
 }
 
-func NewEventbus2RestRule() *rulesv1.Rule {
+func NewEventbus2RestRule(target string) *rulesv1.Rule {
 	rule := rulesv1.Rule{
 		TypeMeta: v1.TypeMeta{
 			Kind:       "Rule",
@@ -45,7 +45,7 @@ func NewEventbus2RestRule() *rulesv1.Rule {
 			},
 			Target: "rest-fluidos",
 			TargetResource: map[string]string{
-				"resource": "http://10.0.2.70:4487/telegraf",
+				"resource": target,
 			},
 		},
 		Status: rulesv1.RuleStatus{
@@ -234,10 +234,11 @@ func CheckRuleExists(rules []rulesv1.Rule, expectedRule *rulesv1.Rule) error {
 }
 
 // HandleRule to handle rule.
-func HandleRule(c edgeclientset.Interface, operation, UID string, sourceType, targetType rulesv1.RuleEndpointTypeDef) error {
+// TODO: patch types.go to create
+func HandleRule(c edgeclientset.Interface, operation, UID string, sourceType, targetType rulesv1.RuleEndpointTypeDef, target string) error {
 	switch operation {
 	case http.MethodPost:
-		body := NewRule(sourceType, targetType)
+		body := NewRule(sourceType, targetType, target)
 		_, err := c.RulesV1().Rules("default").Create(context.TODO(), body, v1.CreateOptions{})
 		return err
 

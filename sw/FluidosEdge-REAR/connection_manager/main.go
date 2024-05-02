@@ -30,6 +30,7 @@ func main() {
 
 	deletePtr := flag.Bool("delete", false, "a bool")
 	createPtr := flag.Bool("create", false, "a bool")
+	createTargetPtr := flag.String("target", "0.0.0.0", "a string")
 
 	flag.Parse()
 
@@ -49,15 +50,17 @@ func main() {
 	var edgeClientSet edgeclientset.Interface = utils_fe.NewKubeEdgeClient(*kubeconfig)
 
 	if *deletePtr {
+		fmt.Printf("Delete any pre-existing rules")
 		// Delete any pre-existing rules
 		list, err := utils_fe.ListRule(edgeClientSet, "default")
 		if err == nil {
 			for _, rule := range list {
-				err := utils_fe.HandleRule(edgeClientSet, http.MethodDelete, rule.Name, "", "")
+				err := utils_fe.HandleRule(edgeClientSet, http.MethodDelete, rule.Name, "", "", "")
 				if err != nil {
 					fmt.Printf("Error deleting rule %v\n", rule.Name)
 				}
 			}
+			fmt.Printf("Done")
 		} else {
 			fmt.Println("Error listing rules")
 		}
@@ -74,9 +77,7 @@ func main() {
 		} else {
 			fmt.Println("Error listing rule endpoints")
 		}
-	}
-
-	if *createPtr {
+	} else if *createPtr {
 
 		// create rest ruleendpoint
 		fmt.Printf("Create REST rule endpoint, ")
@@ -96,9 +97,12 @@ func main() {
 			fmt.Println("OK")
 		}
 
+		// target examples
+		// http://10.0.2.70:4487/telegraf
+		// http://10.244.0.19:8080
 		// create rule: eventbus to rest.
-		fmt.Printf("Create rule, ")
-		err = utils_fe.HandleRule(edgeClientSet, http.MethodPost, "", v1ke.RuleEndpointTypeEventBus, v1ke.RuleEndpointTypeRest)
+		fmt.Printf("Create rule, target %v, ", *createTargetPtr)
+		err = utils_fe.HandleRule(edgeClientSet, http.MethodPost, "", v1ke.RuleEndpointTypeEventBus, v1ke.RuleEndpointTypeRest, *createTargetPtr)
 		if err != nil {
 			fmt.Println("ERROR ", err)
 		} else {
