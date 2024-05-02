@@ -30,6 +30,7 @@ func main() {
 
 	deletePtr := flag.Bool("delete", false, "a bool")
 	createPtr := flag.Bool("create", false, "a bool")
+	listPtr := flag.Bool("list", false, "a bool")
 	createTargetPtr := flag.String("target", "0.0.0.0", "a string")
 
 	flag.Parse()
@@ -50,7 +51,7 @@ func main() {
 	var edgeClientSet edgeclientset.Interface = utils_fe.NewKubeEdgeClient(*kubeconfig)
 
 	if *deletePtr {
-		fmt.Printf("Delete any pre-existing rules")
+		fmt.Println("Delete any pre-existing rules")
 		// Delete any pre-existing rules
 		list, err := utils_fe.ListRule(edgeClientSet, "default")
 		if err == nil {
@@ -107,6 +108,20 @@ func main() {
 			fmt.Println("ERROR ", err)
 		} else {
 			fmt.Println("OK")
+		}
+	} else if *listPtr {
+		fmt.Println("Found the following rules")
+		list, err := utils_fe.ListRule(edgeClientSet, "default")
+		if err == nil {
+			for idx, rule := range list {
+				fmt.Printf(" %3d. Rule  : %v\n      Source: {node: %v, Topic: %v}\n      Target: %v\n",
+					idx+1, rule.Name,
+					rule.Spec.SourceResource["node_name"],
+					rule.Spec.SourceResource["topic"],
+					rule.Spec.TargetResource["resource"])
+			}
+		} else {
+			fmt.Println("Error listing rules")
 		}
 	}
 }
