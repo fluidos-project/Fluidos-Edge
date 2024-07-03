@@ -38,7 +38,7 @@ For installing FLUIDOS Edge (Cloud layer), the following hardware and software i
     -   GNU C Library: (Debian GLIBC 2.31-13+deb11u7) 2.31
     -   Containerd: v1.6.24
     -   Kubernetes: v1.24.14
-    -   [KubeEdge](https://kubeedge.io/): v1.14.3
+    -   [KubeEdge](https://kubeedge.io/): v1.14.5
 
 ## Dependencies
  
@@ -235,7 +235,7 @@ kubectl cluster-info
 
 Install an administration CLI tool, i.e., keadm, which will help to install and configure CloudCore.
 ```bash
-KE_VER=1.14.3
+KE_VER=1.14.5
 wget https://github.com/kubeedge/kubeedge/releases/download/v$KE_VER/keadm-v$KE_VER-linux-amd64.tar.gz
 tar -xvf keadm-v$KE_VER-linux-amd64.tar.gz
 mv keadm-v$KE_VER-linux-amd64/keadm/keadm /usr/local/bin/
@@ -283,7 +283,7 @@ If you wish to modify and/or create your own image and upload it to your reposit
 
 Initialize KubeEdge cloud core (as normal user).
 ```bash
-keadm init --advertise-address=<SERVER-IP> --profile version=v1.14.3-test-router --kube-config=<KUBECONFIG_PATH> --kubeedge-version=v1.14.3-test-router --set cloudCore.modules.router.enable=true --set cloudCore.image.repository=othontom/cloudcore --set cloudCore.image.pullPolicy=Always
+keadm init --advertise-address=<SERVER-IP> --profile version=v1.14.5-fluidos --kube-config=<KUBECONFIG_PATH> --kubeedge-version=v1.14.5-fluidos --set cloudCore.modules.router.enable=true --set cloudCore.image.repository=othontom/cloudcore --set cloudCore.image.pullPolicy=Always
 ```
 
 Where *<SERVER_IP>* can be either servers IP or name as defined at Step 1, and *<KUBECONFIG_PATH>* is the kubeconfig file path.
@@ -319,7 +319,7 @@ For installing FLUIDOS Edge (Meta Edge layer), the following hardware and softwa
     -   OS: Debian GNU/Linux 11 (bullseye)
     -   Kernel: 5.10.0-26-amd64 #1 SMP Debian 5.10.197-1 (2023-09-29) x86_64 GNU/Linux
     -   GNU C Library: (Debian GLIBC 2.31-13+deb11u7) 2.31
-    -   KubeEdge: v1.14.3
+    -   KubeEdge: v1.14.5
     -   Docker Engine: v24.0.6
 
 ## Dependencies
@@ -469,7 +469,7 @@ systemctl restart containerd
 
 Download and install _keadm_ CLI tool that will automate EdgeCore and MQTT broker installation and configuration.
 ```bash
-KE_VER=1.14.3
+KE_VER=1.14.5
 wget https://github.com/kubeedge/kubeedge/releases/download/v$KE_VER/keadm-v$KE_VER-linux-amd64.tar.gz
 tar -xvf keadm-v$KE_VER-linux-amd64.tar.gz
 mv keadm-v$KE_VER-linux-amd64/keadm/keadm /usr/local/bin/
