@@ -476,7 +476,7 @@ mv keadm-v$KE_VER-linux-amd64/keadm/keadm /usr/local/bin/
 chown root:root /usr/local/bin/keadm
 ```
 
-Based on the configuration parameters, the Meta Edge node (via EdgeCore) will join the Cloud node (replace _<SERVER_IP>_ with the cloud side node's IP or name that have set at the hosts file) (replace _<TOKEN>_ with the token that was generated during the last step of the Cloud layer section[asdad](#cloud-layer-installation--configuration)).
+Based on the configuration parameters, the Meta Edge node (via EdgeCore) will join the Cloud node (replace _<SERVER_IP>_ with the cloud side node's IP or name that have set at the hosts file) (replace _<TOKEN>_ with the token that was generated during the last step of the Cloud layer [section](#cloud-layer-installation--configuration)).
 ```bash
 MASTER_NODE_IP=<SERVER_IP>
 KE_TOKEN=<TOKEN>
