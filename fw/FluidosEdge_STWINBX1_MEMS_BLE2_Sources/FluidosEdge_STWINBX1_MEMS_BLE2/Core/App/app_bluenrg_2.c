@@ -431,7 +431,7 @@ static void User_Process(void)
     	  Environmental_Update((int32_t)(env_data.Pressure *100), (int16_t)(env_data.Temperature * 10));
 #if (!USE_BUTTON)
         BSP_LED_Toggle(LED2);
-        HAL_Delay(1000); /* wait 1 sec before sending new data */
+        HAL_Delay(10000); /* wait 10 sec before sending new data */
 #endif /* (!USE_BUTTON) */
       }
 
