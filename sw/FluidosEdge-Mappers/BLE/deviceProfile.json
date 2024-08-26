@@ -1,0 +1,112 @@
+{
+    "deviceInstances": [
+        {
+            "id": "stwinkt1b-da7acb1f8e2b",
+            "name": "stwinkt1b-da7acb1f8e2b",
+            "protocol": "bluetooth-bluenrg",
+            "model": "STWINKT1B",
+            "twins": [
+                {
+                    "propertyName": "environmental",
+                    "desired": {
+                        "value": ""
+                    },
+                    "reported": {
+                        "value": ""
+                    }
+                },
+                {
+                    "propertyName": "config",
+                    "desired": {
+                        "value": "config",
+                        "metadata": {
+                            "type": "string"
+                        }
+                    },
+                    "reported": {
+                        "value": "0",
+                        "metadata": {
+                            "type": "string"
+                        }
+                    }
+                }
+            ],
+            "data": {
+                "dataProperties": [
+                    {
+                        "propertyName": "environmental",
+                        "metadata": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "dataTopic": "$ke/events/device/+/data/update"
+            },
+            "propertyVisitors": [
+                {
+                    "name": "environmental",
+                    "propertyName": "environmental",
+                    "modelName": "bluenrg",
+                    "protocol": "bluetooth",
+                    "reportCycle": 1000000000,
+                    "collectCycle": 500000000,
+                    "visitorConfig": {
+                        "characteristicUUID": "00140000000111e1ac360002a5d5c51b",
+                        "dataConverter": {
+                            "startIndex": 2,
+                            "endIndex": 7
+                        }
+                    }
+                },
+                {
+                    "name": "config",
+                    "propertyName": "config",
+                    "modelName": "bluenrg",
+                    "protocol": "bluetooth",
+                    "visitorConfig": {
+                        "characteristicUUID": "00f00000000111e1ac360002a5d5c51b",
+                        "dataWrite": {
+                            "config": "Cg=="
+                        },
+                        "dataConverter": {}
+                    }
+                }
+            ]
+        }
+    ],
+    "deviceModels": [
+        {
+            "name": "bluenrg",
+            "properties": [
+                {
+                    "name": "environmental",
+                    "dataType": "int",
+                    "description": "temperature and atmospheric pressure",
+                    "accessMode": "ReadOnly",
+                    "defaultValue": 0,
+                    "minimum": 0,
+                    "maximum": 0
+                },
+                {
+                    "name": "config",
+                    "dataType": "int",
+                    "description": "Write configurations to the Sensor Tile",
+                    "accessMode": "ReadWrite",
+                    "defaultValue": 0,
+                    "minimum": 0,
+                    "maximum": 0
+                }
+            ]
+        }
+    ],
+    "protocols": [
+        {
+            "name": "bluetooth-bluenrg",
+            "protocol": "bluetooth",
+            "protocolConfig": {
+                "macAddress": "DA:7A:CB:1F:8E:2B"
+            },
+            "protocolCommonConfig": null
+        }
+    ]
+}
