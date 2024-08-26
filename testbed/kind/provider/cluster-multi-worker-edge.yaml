@@ -1,0 +1,20 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+  - role: worker
+    labels:
+      node-role.fluidos.eu/resources: "true"
+      node-role.fluidos.eu/worker: "true"
+    extraPortMappings:
+    # InfluxDB
+    - containerPort: 8086
+      hostPort: 8086
+     # Telegraf
+    - containerPort: 4488
+      hostPort: 4488
+  - role: edge-node
+    extraPortMappings:
+    # MQTT Broker
+    - containerPort: 1883
+      hostPort: 1883

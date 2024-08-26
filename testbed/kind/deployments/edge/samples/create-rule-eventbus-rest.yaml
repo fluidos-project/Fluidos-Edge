@@ -1,0 +1,11 @@
+apiVersion: rules.kubeedge.io/v1
+kind: Rule
+metadata:
+  name: fluidos-eventbus-rest
+  labels:
+    description: fluidos_provider_example_router_rule
+spec:
+  source: "eventbus-fluidos"
+  sourceResource: {"topic": "cloudapp-t/bt-led-1","node_name": "fluidos-provider-worker2"}
+  target: "rest-fluidos"
+  targetResource: {"resource":"http://172.18.0.6:4488/telegraf"}

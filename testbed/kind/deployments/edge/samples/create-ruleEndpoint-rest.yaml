@@ -1,0 +1,9 @@
+apiVersion: rules.kubeedge.io/v1
+kind: RuleEndpoint
+metadata:
+  name: rest-fluidos
+  labels:
+    description: fluidos_provider_rest
+spec:
+  ruleEndpointType: "rest"
+  properties: {}

@@ -1,0 +1,9 @@
+apiVersion: rules.kubeedge.io/v1
+kind: RuleEndpoint
+metadata:
+  name: eventbus-fluidos
+  labels:
+    description: fluidos_provider_eventbus
+spec:
+  ruleEndpointType: "eventbus"
+  properties: {}

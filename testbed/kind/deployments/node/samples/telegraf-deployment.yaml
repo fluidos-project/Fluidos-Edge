@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telegraf-deployment
+spec:
+  selector:
+    matchLabels:
+      app: telegraf
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: telegraf
+    spec:
+      hostNetwork: true
+      containers:
+        - image: telegraf:latest
+          name: telegraf
+          ports:
+          - containerPort: 4488
+          volumeMounts:
+            - mountPath: /etc/telegraf/telegraf.conf
+              name: telegraf-config
+              subPath: telegraf.conf
+              readOnly: true
+          envFrom:
+            - secretRef:
+                name: telegraf-secrets
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+            requests:
+              cpu: "100m"
+              memory: "128Mi"          
+      volumes:
+        - name: telegraf-config
+          configMap:
+            name: telegraf-config
+#      affinity:
+#        nodeAffinity:
+#          requiredDuringSchedulingIgnoredDuringExecution:
+#            nodeSelectorTerms:
+#            - matchExpressions:
+#              - key: node-role.kubernetes.io/edge
+#                operator: DoesNotExist
+#      nodeSelector:
+#        "node-role.kubernetes.io/control-plane": ""
+
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: telegraf-service
+#spec:
+#  selector:
+#    app: telegraf
+#  ports:
+#  - protocol: TCP
+#    port: 4487 # The port your web server is listening on inside the container
+#    targetPort: 4487 # The container port where your web server is running
+
