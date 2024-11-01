@@ -17,9 +17,11 @@ This guide will create two different Kubernetes clusters:
 
 - **fluidos-provider**: This cluster (a.k.a. FLUIDOS node) will act as a provider of FLUIDOS resources. It will offer its own Flavors on the specific request made by the consumer, reserving and selling it.
 
-The setup script will automatically create an edge worker node within the fluidos-provider cluster. This configuration allows you to leverage Leaf Edge Devices (LEDs), which typically lack access to the Internet and similar computer networks.
+The setup script will automatically create an edge worker node within the fluidos-provider cluster. This configuration allows you to leverage Leaf Edge Devices (LEDs), which typically lack access to the Internet and similar computer networks. The following figure depicts an overview of the setup that will be achieved by the end of this guide.
+
+**Setup overview**
 <p align="center">
-<img src="../../doc/images/fluidos-testbed-edge-init.png"/>
+<img src="../../doc/images/fluidos-testbed-edge.png"/>
 </p>
 
 ### Prerequisites
@@ -104,7 +106,7 @@ This allows for convenient monitoring of both consumer and provider clusters wit
 7. You can also check the status of the generated flavors with the following command:
 
 ```sh
-kubectl get flavors.nodecore.fluidos.eu -n fluidos
+kubectl get flavours.nodecore.fluidos.eu -n fluidos
 ```
 
 The result should be something like this:
@@ -126,6 +128,12 @@ NAME                                   PROVIDER ID   TYPE          CPU          
    fluidos-provider-worker          Ready    <none>          6m12s   v1.26.15
    fluidos-provider-worker2         Ready    agent,edge      5m36s   v1.24.17-kubeedge-v1.14.5-fluidos.2+eb9e7c3ef6b110
    ```
+
+Here is an overview of the testbed, so far.
+<p align="center">
+<img src="../../doc/images/fluidos-testbed-edge-init.png"/>
+</p>
+
 
 ### Usage
 In this section, we will instruct you on how you can interact with the FLUIDOS Node using a high-level approach. Furthermore, we will register a BLE LED device and properly configure FluidosEdge Router.
@@ -163,7 +171,7 @@ fluidos     solver-sample   intent-sample   true             true              f
 5. Other resources have been created, you can check them with the following commands:
 
 ```sh
-kubectl get flavors.nodecore.fluidos.eu -n fluidos
+kubectl get flavours.nodecore.fluidos.eu -n fluidos
 kubectl get discoveries.advertisement.fluidos.eu -n fluidos
 kubectl get reservations.reservation.fluidos.eu -n fluidos
 kubectl get contracts.reservation.fluidos.eu -n fluidos
@@ -389,12 +397,6 @@ To verify that data reach the final endpoint (InfluxDB), you can connect to the 
 Navigate to the buckets section and build a basic query. 
 
 Sample output:
-#### Setup overview
 <p align="center">
 <img src="../../doc/images/fluidos-testbed-edge-influxdb-sample.png"/>
-</p>
-
-#### Setup overview
-<p align="center">
-<img src="../../doc/images/fluidos-testbed-edge.png"/>
 </p>
