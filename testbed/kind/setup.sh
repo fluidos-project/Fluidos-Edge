@@ -53,7 +53,7 @@ echo -e "${BBCOLOR}OK${ENDFORMAT}"
 echo -ne "${BCOLOR}Deploy metrics server...${ENDFORMAT}"
 kubectl apply -f "$PWD/metrics-server.yaml" 1> $OUTPUT
 echo -e "${BBCOLOR}OK${ENDFORMAT}"
-
+sleep 5
 echo "Waiting for metrics-server to be ready"
 kubectl wait --for=condition=ready pod -l k8s-app=metrics-server -n kube-system --timeout=360s   
 
@@ -92,7 +92,7 @@ echo -e "${BBCOLOR}OK${ENDFORMAT}"
 echo -ne "${BCOLOR}Deploy Metrics server...${ENDFORMAT}"
 kubectl apply -f "$PWD/metrics-server.yaml" 1> $OUTPUT
 echo -e "${BBCOLOR}OK${ENDFORMAT}"
-
+sleep 5
 echo "Waiting for metrics-server to be ready"
 kubectl wait --for=condition=ready pod -l k8s-app=metrics-server -n kube-system --timeout=360s
 
